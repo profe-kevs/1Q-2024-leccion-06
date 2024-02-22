@@ -1,3 +1,15 @@
 ```{python}
-2 + 2
+2 + 3
+```
+
+```{python}
+import pandas as pd
+
+wide_data = pd.read_csv('wide_data.csv')
+wide_data
+```
+
+```{python}
+long_data = pd.read_csv('long_data.csv')
+long_data
 ```
