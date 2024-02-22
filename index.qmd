@@ -4,12 +4,40 @@
 
 ```{python}
 import pandas as pd
+import seaborn as sns
 
-wide_data = pd.read_csv('wide_data.csv')
-wide_data
+wide_data = pd.read_csv('wide_data.csv',parse_dates=['date'])
+wide_data.info()
 ```
 
 ```{python}
-long_data = pd.read_csv('long_data.csv')
-long_data
+long_data = pd.read_csv(
+    'long_data.csv', 
+    usecols=['datatype', 'date', 'value'],
+    parse_dates=['date']
+)
+long_data.info()
+```
+
+```{python}
+wide_data.head(5)
+```
+
+```{python}
+wide_data.describe(include='all')
+```
+
+```{python}
+long_data.describe(include='all')
+```
+
+```{python}
+#sns.lineplot(data=wide_data, x='date', y=['TMAX', 'TMIN', 'TOBS'])
+sns.set_theme(rc={'figure.figsize':(15, 5)}, style='white')
+sns.lineplot(data=wide_data, x='date', y='TMAX')
+```
+
+```{python}
+sns.set_theme(rc={'figure.figsize':(15, 5)}, style='white')
+sns.lineplot(data=long_data, x='date', y='value', hue='datatype')
 ```
